@@ -13,9 +13,16 @@ API documentation is available at <https://docs.getpropify.com/>.
 [![Try it out](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/typescript-example-using-sdk-built-with-fern-11hcjx?file=app.ts&view=editor)
 
 ```typescript
-import { TODO } from "TODO";
+import { PropifyApiClient } from '@fern-api/propify';
 
-const TODO
+const client = new PropifyApiClient({
+  propifyApiSecret: "my-api-secret",
+  propifyApiKey: "my-api-key"
+});
+
+const response = await client.applicants.get("my-applicant-id");
+
+console.log('Received response from Propify!', response);
 ```
 
 ## Beta status

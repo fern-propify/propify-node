@@ -1,6 +1,6 @@
 # Propify Node Library
 
-[![npm shield](https://img.shields.io/npm/v/@fern-api/{company})](https://www.npmjs.com/package/@fern-api/propify)
+[![npm shield](https://img.shields.io/npm/v/@fern-api/propify)](https://www.npmjs.com/package/@fern-api/propify)
 
 The Propify Node.js library provides access to the Propify API from JavaScript/TypeScript.
 

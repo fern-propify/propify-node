@@ -3,7 +3,8 @@
  */
 
 export const PropifyApiEnvironment = {
-    Demo: "demo.getpropify.com/v1",
+    Demo: "https://demo.getpropify.com/v1",
+    Production: "https://api.getpropify.com/v1",
 } as const;
 
-export type PropifyApiEnvironment = typeof PropifyApiEnvironment.Demo;
+export type PropifyApiEnvironment = typeof PropifyApiEnvironment.Demo | typeof PropifyApiEnvironment.Production;

@@ -10,7 +10,7 @@ API documentation is available at <https://docs.getpropify.com/>.
 
 ## Usage
 
-[![Try it out](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](TODO)
+[![Try it out](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/typescript-example-using-sdk-built-with-fern-11hcjx?file=app.ts&view=editor)
 
 ```typescript
 import { TODO } from "TODO";

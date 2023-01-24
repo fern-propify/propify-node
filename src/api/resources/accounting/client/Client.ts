@@ -11,7 +11,8 @@ import * as errors from "../../../../errors";
 export declare namespace Client {
     interface Options {
         environment: string;
-        propifyApiKey?: core.Supplier<string>;
+        propifyApiSecret?: core.Supplier<string>;
+        propifyApiKey: string;
     }
 }
 
@@ -21,12 +22,13 @@ export class Client {
     /**
      * @throws {PropifyApi.DefaultError}
      */
-    public async getAllRecords(): Promise<PropifyApi.AllAccountingRecords> {
+    public async getAllRecords(): Promise<PropifyApi.GetAllAccountingRecordsResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment, "/v1/accounting/"),
+            url: urlJoin(this.options.environment, "/v1/accounting"),
             method: "GET",
             headers: {
-                "propify-api-key": await core.Supplier.get(this.options.propifyApiKey),
+                "propify-api-key": this.options.propifyApiKey,
+                "propify-api-secret": await core.Supplier.get(this.options.propifyApiSecret),
             },
         });
         if (_response.ok) {

@@ -1,2 +1,2 @@
-export * from "./AllListings";
+export * from "./GetAllListingsResponse";
 export * from "./Listing";

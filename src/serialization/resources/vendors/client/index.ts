@@ -1,1 +1,1 @@
-export * as getAllVendors from "./getAllVendors";
+export * as getAll from "./getAll";

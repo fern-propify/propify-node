@@ -1,2 +1,2 @@
-export * from "./RentPaymentHistory";
-export * from "./AllRentPaymentHistory";
+export * from "./RentPaymentRecord";
+export * from "./GetAllRentPaymentRecordsResponse";

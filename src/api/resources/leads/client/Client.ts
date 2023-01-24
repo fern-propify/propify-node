@@ -11,7 +11,8 @@ import * as errors from "../../../../errors";
 export declare namespace Client {
     interface Options {
         environment: string;
-        propifyApiKey?: core.Supplier<string>;
+        propifyApiSecret?: core.Supplier<string>;
+        propifyApiKey: string;
     }
 }
 
@@ -21,16 +22,19 @@ export class Client {
     /**
      * @throws {PropifyApi.DefaultError}
      */
-    public async get(): Promise<PropifyApi.AllLeads> {
+    public async getAll(): Promise<PropifyApi.GetAllLeadsResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment, "/v1/leads/"),
+            url: urlJoin(this.options.environment, "/v1/leads"),
             method: "GET",
             headers: {
-                "propify-api-key": await core.Supplier.get(this.options.propifyApiKey),
+                "propify-api-key": this.options.propifyApiKey,
+                "propify-api-secret": await core.Supplier.get(this.options.propifyApiSecret),
             },
         });
         if (_response.ok) {
-            return await serializers.leads.get.Response.parse(_response.body as serializers.leads.get.Response.Raw);
+            return await serializers.leads.getAll.Response.parse(
+                _response.body as serializers.leads.getAll.Response.Raw
+            );
         }
 
         if (_response.error.reason === "status-code") {

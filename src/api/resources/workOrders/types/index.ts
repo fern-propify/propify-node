@@ -1,2 +1,2 @@
 export * from "./WorkOrder";
-export * from "./AllWorkOrders";
+export * from "./GetAllWorkOrdersResponse";

@@ -4,4 +4,4 @@
 
 import { PropifyApi } from "@fern-api/propify";
 
-export type Response = PropifyApi.AllAccountingRecords;
+export type Response = PropifyApi.GetAllAccountingRecordsResponse;

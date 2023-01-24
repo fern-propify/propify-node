@@ -1,3 +1,3 @@
 export * from "./requests";
-export * as getAllApplicants from "./getAllApplicants";
-export * as getApplicant from "./getApplicant";
+export * as getAll from "./getAll";
+export * as get from "./get";

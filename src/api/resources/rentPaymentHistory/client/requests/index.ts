@@ -1,1 +1,1 @@
-export { GetAllRentPaymentHistoryRequest } from "./GetAllRentPaymentHistoryRequest";
+export { GetAllRentPaymentRecordsRequest } from "./GetAllRentPaymentRecordsRequest";

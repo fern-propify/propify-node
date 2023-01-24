@@ -1,2 +1,2 @@
 export * from "./Property";
-export * from "./AllProperties";
+export * from "./GetAllPropertiesResponse";

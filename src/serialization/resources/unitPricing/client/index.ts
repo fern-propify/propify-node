@@ -1,1 +1,1 @@
-export * as getAllUnitPricing from "./getAllUnitPricing";
+export * as getAllUnitPrices from "./getAllUnitPrices";

@@ -1,2 +1,2 @@
-export * from "./AllApplicants";
+export * from "./GetAllApplicantsResponse";
 export * from "./Applicant";

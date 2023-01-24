@@ -1,2 +1,2 @@
 export * from "./requests";
-export * as getAllUnits from "./getAllUnits";
+export * as getAll from "./getAll";

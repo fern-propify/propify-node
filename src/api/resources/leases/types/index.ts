@@ -1,2 +1,2 @@
 export * from "./Lease";
-export * from "./AllLeases";
+export * from "./GetAllLeasesResponse";

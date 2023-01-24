@@ -1,2 +1,2 @@
-export * as getAllResidents from "./getAllResidents";
+export * as getAll from "./getAll";
 export * as get from "./get";

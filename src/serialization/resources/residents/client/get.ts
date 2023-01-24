@@ -6,9 +6,11 @@ import * as serializers from "../../..";
 import { PropifyApi } from "@fern-api/propify";
 import * as core from "../../../../core";
 
-export const Response: core.serialization.Schema<serializers.residents.get.Response.Raw, PropifyApi.SingleResident> =
-    core.serialization.lazyObject(async () => (await import("../../..")).SingleResident);
+export const Response: core.serialization.Schema<
+    serializers.residents.get.Response.Raw,
+    PropifyApi.GetResidentResponse
+> = core.serialization.lazyObject(async () => (await import("../../..")).GetResidentResponse);
 
 export declare namespace Response {
-    type Raw = serializers.SingleResident.Raw;
+    type Raw = serializers.GetResidentResponse.Raw;
 }

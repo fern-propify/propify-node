@@ -1,1 +1,1 @@
-export * as getAllProperties from "./getAllProperties";
+export * as getAll from "./getAll";

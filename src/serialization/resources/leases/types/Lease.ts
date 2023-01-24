@@ -42,10 +42,7 @@ export const Lease: core.serialization.ObjectSchema<serializers.Lease.Raw, Propi
         ),
         status: core.serialization.string().optional(),
         type: core.serialization.string().optional(),
-        integrationVendor: core.serialization.property(
-            "integration_vendor",
-            core.serialization.lazy(async () => (await import("../../..")).IntegrationVendor)
-        ),
+        integrationVendor: core.serialization.property("integration_vendor", core.serialization.string()),
     });
 
 export declare namespace Lease {
@@ -72,6 +69,6 @@ export declare namespace Lease {
         realized_move_out_date?: string | null;
         status?: string | null;
         type?: string | null;
-        integration_vendor: serializers.IntegrationVendor.Raw;
+        integration_vendor: string;
     }
 }

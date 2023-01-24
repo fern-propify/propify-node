@@ -1,2 +1,2 @@
 export * from "./Unit";
-export * from "./AllUnits";
+export * from "./GetAllUnitsResponse";

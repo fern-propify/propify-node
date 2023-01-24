@@ -1,2 +1,2 @@
 export * from "./requests";
-export * as getAllRentPaymentHistory from "./getAllRentPaymentHistory";
+export * as getAllRecords from "./getAllRecords";

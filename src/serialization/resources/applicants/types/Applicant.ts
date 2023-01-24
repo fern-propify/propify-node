@@ -29,10 +29,7 @@ export const Applicant: core.serialization.ObjectSchema<serializers.Applicant.Ra
         email1: core.serialization.property("email_1", core.serialization.string().optional()),
         email2: core.serialization.property("email_2", core.serialization.string().optional()),
         notes: core.serialization.string().optional(),
-        integrationVendor: core.serialization.property(
-            "integration_vendor",
-            core.serialization.lazy(async () => (await import("../../..")).IntegrationVendor)
-        ),
+        integrationVendor: core.serialization.property("integration_vendor", core.serialization.string()),
     });
 
 export declare namespace Applicant {
@@ -58,6 +55,6 @@ export declare namespace Applicant {
         email_1?: string | null;
         email_2?: string | null;
         notes?: string | null;
-        integration_vendor: serializers.IntegrationVendor.Raw;
+        integration_vendor: string;
     }
 }

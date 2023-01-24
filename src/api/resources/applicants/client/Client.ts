@@ -11,7 +11,8 @@ import * as errors from "../../../../errors";
 export declare namespace Client {
     interface Options {
         environment: string;
-        propifyApiKey?: core.Supplier<string>;
+        propifyApiSecret?: core.Supplier<string>;
+        propifyApiKey: string;
     }
 }
 
@@ -22,7 +23,7 @@ export class Client {
      * Get all applicants
      * @throws {PropifyApi.DefaultError}
      */
-    public async getAllApplicants(request?: PropifyApi.GetAllApplicationsRequest): Promise<PropifyApi.AllApplicants> {
+    public async getAll(request?: PropifyApi.GetAllApplicationsRequest): Promise<PropifyApi.GetAllApplicantsResponse> {
         const _queryParams = new URLSearchParams();
         if (request?.orderBy != null) {
             _queryParams.append("order-by", request?.orderBy);
@@ -37,16 +38,17 @@ export class Client {
         }
 
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment, "/v1/applicants/"),
+            url: urlJoin(this.options.environment, "/v1/applicants"),
             method: "GET",
             headers: {
-                "propify-api-key": await core.Supplier.get(this.options.propifyApiKey),
+                "propify-api-key": this.options.propifyApiKey,
+                "propify-api-secret": await core.Supplier.get(this.options.propifyApiSecret),
             },
             queryParameters: _queryParams,
         });
         if (_response.ok) {
-            return await serializers.applicants.getAllApplicants.Response.parse(
-                _response.body as serializers.applicants.getAllApplicants.Response.Raw
+            return await serializers.applicants.getAll.Response.parse(
+                _response.body as serializers.applicants.getAll.Response.Raw
             );
         }
 
@@ -83,7 +85,7 @@ export class Client {
      * Get a single applicant
      * @throws {PropifyApi.DefaultError}
      */
-    public async getApplicant(
+    public async get(
         id: PropifyApi.ApplicantId,
         request?: PropifyApi.GetApplicationRequest
     ): Promise<PropifyApi.Applicant> {
@@ -104,13 +106,14 @@ export class Client {
             url: urlJoin(this.options.environment, `/v1/applicants/${id}`),
             method: "GET",
             headers: {
-                "propify-api-key": await core.Supplier.get(this.options.propifyApiKey),
+                "propify-api-key": this.options.propifyApiKey,
+                "propify-api-secret": await core.Supplier.get(this.options.propifyApiSecret),
             },
             queryParameters: _queryParams,
         });
         if (_response.ok) {
-            return await serializers.applicants.getApplicant.Response.parse(
-                _response.body as serializers.applicants.getApplicant.Response.Raw
+            return await serializers.applicants.get.Response.parse(
+                _response.body as serializers.applicants.get.Response.Raw
             );
         }
 

@@ -11,7 +11,8 @@ import * as errors from "../../../../errors";
 export declare namespace Client {
     interface Options {
         environment: string;
-        propifyApiKey?: core.Supplier<string>;
+        propifyApiSecret?: core.Supplier<string>;
+        propifyApiKey: string;
     }
 }
 
@@ -22,7 +23,7 @@ export class Client {
      * Get all units
      * @throws {PropifyApi.DefaultError}
      */
-    public async getAllUnits(request?: PropifyApi.GetAllUnitsRequest): Promise<PropifyApi.AllUnits> {
+    public async getAll(request?: PropifyApi.GetAllUnitsRequest): Promise<PropifyApi.GetAllUnitsResponse> {
         const _queryParams = new URLSearchParams();
         if (request?.orderBy != null) {
             _queryParams.append("order-by", request?.orderBy);
@@ -37,16 +38,17 @@ export class Client {
         }
 
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment, "/v1/units/"),
+            url: urlJoin(this.options.environment, "/v1/units"),
             method: "GET",
             headers: {
-                "propify-api-key": await core.Supplier.get(this.options.propifyApiKey),
+                "propify-api-key": this.options.propifyApiKey,
+                "propify-api-secret": await core.Supplier.get(this.options.propifyApiSecret),
             },
             queryParameters: _queryParams,
         });
         if (_response.ok) {
-            return await serializers.units.getAllUnits.Response.parse(
-                _response.body as serializers.units.getAllUnits.Response.Raw
+            return await serializers.units.getAll.Response.parse(
+                _response.body as serializers.units.getAll.Response.Raw
             );
         }
 

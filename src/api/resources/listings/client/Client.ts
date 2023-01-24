@@ -11,7 +11,8 @@ import * as errors from "../../../../errors";
 export declare namespace Client {
     interface Options {
         environment: string;
-        propifyApiKey?: core.Supplier<string>;
+        propifyApiSecret?: core.Supplier<string>;
+        propifyApiKey: string;
     }
 }
 
@@ -21,17 +22,18 @@ export class Client {
     /**
      * @throws {PropifyApi.DefaultError}
      */
-    public async getAllListings(): Promise<PropifyApi.AllListings> {
+    public async getAll(): Promise<PropifyApi.GetAllListingsResponse> {
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment, "/v1/listings/"),
+            url: urlJoin(this.options.environment, "/v1/listings"),
             method: "GET",
             headers: {
-                "propify-api-key": await core.Supplier.get(this.options.propifyApiKey),
+                "propify-api-key": this.options.propifyApiKey,
+                "propify-api-secret": await core.Supplier.get(this.options.propifyApiSecret),
             },
         });
         if (_response.ok) {
-            return await serializers.listings.getAllListings.Response.parse(
-                _response.body as serializers.listings.getAllListings.Response.Raw
+            return await serializers.listings.getAll.Response.parse(
+                _response.body as serializers.listings.getAll.Response.Raw
             );
         }
 

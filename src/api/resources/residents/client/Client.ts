@@ -11,7 +11,8 @@ import * as errors from "../../../../errors";
 export declare namespace Client {
     interface Options {
         environment: string;
-        propifyApiKey?: core.Supplier<string>;
+        propifyApiSecret?: core.Supplier<string>;
+        propifyApiKey: string;
     }
 }
 
@@ -21,7 +22,7 @@ export class Client {
     /**
      * Get all residents
      */
-    public async getAllResidents(request?: PropifyApi.GetAllResidents): Promise<PropifyApi.AllResidents> {
+    public async getAll(request?: PropifyApi.GetAllResidents): Promise<PropifyApi.GetAllResidentsResponse> {
         const _queryParams = new URLSearchParams();
         if (request?.orderBy != null) {
             _queryParams.append("order-by", request?.orderBy);
@@ -36,16 +37,17 @@ export class Client {
         }
 
         const _response = await core.fetcher({
-            url: urlJoin(this.options.environment, "/v1/residents/"),
+            url: urlJoin(this.options.environment, "/v1/residents"),
             method: "GET",
             headers: {
-                "propify-api-key": await core.Supplier.get(this.options.propifyApiKey),
+                "propify-api-key": this.options.propifyApiKey,
+                "propify-api-secret": await core.Supplier.get(this.options.propifyApiSecret),
             },
             queryParameters: _queryParams,
         });
         if (_response.ok) {
-            return await serializers.residents.getAllResidents.Response.parse(
-                _response.body as serializers.residents.getAllResidents.Response.Raw
+            return await serializers.residents.getAll.Response.parse(
+                _response.body as serializers.residents.getAll.Response.Raw
             );
         }
 
@@ -77,7 +79,7 @@ export class Client {
     public async get(
         id: PropifyApi.ResidentId,
         request?: PropifyApi.GetResidentRequest
-    ): Promise<PropifyApi.SingleResident> {
+    ): Promise<PropifyApi.GetResidentResponse> {
         const _queryParams = new URLSearchParams();
         if (request?.orderBy != null) {
             _queryParams.append("order-by", request?.orderBy);
@@ -95,7 +97,8 @@ export class Client {
             url: urlJoin(this.options.environment, `/v1/residents/${id}`),
             method: "GET",
             headers: {
-                "propify-api-key": await core.Supplier.get(this.options.propifyApiKey),
+                "propify-api-key": this.options.propifyApiKey,
+                "propify-api-secret": await core.Supplier.get(this.options.propifyApiSecret),
             },
             queryParameters: _queryParams,
         });

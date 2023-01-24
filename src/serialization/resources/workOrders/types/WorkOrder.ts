@@ -27,10 +27,7 @@ export const WorkOrder: core.serialization.ObjectSchema<serializers.WorkOrder.Ra
         priority: core.serialization.string().optional(),
         status: core.serialization.string().optional(),
         type: core.serialization.string().optional(),
-        integrationVendor: core.serialization.property(
-            "integration_vendor",
-            core.serialization.lazy(async () => (await import("../../..")).IntegrationVendor)
-        ),
+        integrationVendor: core.serialization.property("integration_vendor", core.serialization.string()),
     });
 
 export declare namespace WorkOrder {
@@ -54,6 +51,6 @@ export declare namespace WorkOrder {
         priority?: string | null;
         status?: string | null;
         type?: string | null;
-        integration_vendor: serializers.IntegrationVendor.Raw;
+        integration_vendor: string;
     }
 }

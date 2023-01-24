@@ -41,10 +41,7 @@ export const Unit: core.serialization.ObjectSchema<serializers.Unit.Raw, Propify
     isFurnished: core.serialization.property("is_furnished", core.serialization.boolean().optional()),
     isListed: core.serialization.property("is_listed", core.serialization.boolean().optional()),
     isVacant: core.serialization.property("is_vacant", core.serialization.boolean().optional()),
-    integrationVendor: core.serialization.property(
-        "integration_vendor",
-        core.serialization.lazy(async () => (await import("../../..")).IntegrationVendor)
-    ),
+    integrationVendor: core.serialization.property("integration_vendor", core.serialization.string()),
 });
 
 export declare namespace Unit {
@@ -74,6 +71,6 @@ export declare namespace Unit {
         is_furnished?: boolean | null;
         is_listed?: boolean | null;
         is_vacant?: boolean | null;
-        integration_vendor: serializers.IntegrationVendor.Raw;
+        integration_vendor: string;
     }
 }

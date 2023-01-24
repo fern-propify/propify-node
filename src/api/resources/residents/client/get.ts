@@ -4,4 +4,4 @@
 
 import { PropifyApi } from "@fern-api/propify";
 
-export type Response = PropifyApi.SingleResident;
+export type Response = PropifyApi.GetResidentResponse;

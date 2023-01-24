@@ -26,10 +26,7 @@ export const Property: core.serialization.ObjectSchema<serializers.Property.Raw,
         managerPhone2: core.serialization.property("manager_phone_2", core.serialization.string().optional()),
         managerPhone2Type: core.serialization.property("manager_phone_2_type", core.serialization.string().optional()),
         managerEmail: core.serialization.property("manager_email", core.serialization.string().optional()),
-        integrationVendor: core.serialization.property(
-            "integration_vendor",
-            core.serialization.lazy(async () => (await import("../../..")).IntegrationVendor)
-        ),
+        integrationVendor: core.serialization.property("integration_vendor", core.serialization.string()),
     });
 
 export declare namespace Property {
@@ -52,6 +49,6 @@ export declare namespace Property {
         manager_phone_2?: string | null;
         manager_phone_2_type?: string | null;
         manager_email?: string | null;
-        integration_vendor: serializers.IntegrationVendor.Raw;
+        integration_vendor: string;
     }
 }

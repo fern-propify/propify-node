@@ -19,7 +19,8 @@ import { Client as WorkOrdersClient } from "./api/resources/workOrders/client/Cl
 export declare namespace PropifyApiClient {
     interface Options {
         environment: string;
-        propifyApiKey?: core.Supplier<string>;
+        propifyApiSecret?: core.Supplier<string>;
+        propifyApiKey: string;
     }
 }
 

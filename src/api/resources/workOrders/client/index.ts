@@ -1,2 +1,2 @@
 export * from "./requests";
-export * as getAllWorkOrders from "./getAllWorkOrders";
+export * as getAll from "./getAll";

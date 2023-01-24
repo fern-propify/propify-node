@@ -50,5 +50,5 @@ export interface Lease {
     /** The type of lease */
     type?: string;
     /** The property management system of record */
-    integrationVendor: PropifyApi.IntegrationVendor;
+    integrationVendor: string;
 }

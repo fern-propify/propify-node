@@ -8,9 +8,9 @@ import * as core from "../../../../core";
 
 export const Response: core.serialization.Schema<
     serializers.accounting.getAllRecords.Response.Raw,
-    PropifyApi.AllAccountingRecords
-> = core.serialization.lazyObject(async () => (await import("../../..")).AllAccountingRecords);
+    PropifyApi.GetAllAccountingRecordsResponse
+> = core.serialization.lazyObject(async () => (await import("../../..")).GetAllAccountingRecordsResponse);
 
 export declare namespace Response {
-    type Raw = serializers.AllAccountingRecords.Raw;
+    type Raw = serializers.GetAllAccountingRecordsResponse.Raw;
 }
